@@ -3,6 +3,9 @@ const app = express();
 const dotenv =require('dotenv')
 const morgan = require('morgan');
 const path = require('path')
+const connectDB=require('./server/database/connection');
+
+
 // const bodyparse = require('body-parser')
 dotenv.config({path:'config.env'});
 const PORT =process.env.PORT || 8080 ;
@@ -13,6 +16,12 @@ app.use(express.urlencoded({
 }));
 // log requests
 app.use(morgan('tiny'));
+
+
+// mongodb connection
+connectDB();
+
+
 // set view engine
 app.set('view engine','ejs');
 
